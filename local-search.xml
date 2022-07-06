@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+  
+  <entry>
+    <title>Spawn failed 问题</title>
+    <link href="/2022/07/06/hexo/code128%E9%97%AE%E9%A2%98/"/>
+    <url>/2022/07/06/hexo/code128%E9%97%AE%E9%A2%98/</url>
+    
+    <content type="html"><![CDATA[<h1 id="hexo在上传到github时出现问题"><a href="#hexo在上传到github时出现问题" class="headerlink" title="hexo在上传到github时出现问题"></a>hexo在上传到github时出现问题</h1><h2 id="问题描述："><a href="#问题描述：" class="headerlink" title="问题描述："></a>问题描述：</h2><p><img src="/2022/07/06/hexo/code128%E9%97%AE%E9%A2%98/code128%E9%97%AE%E9%A2%98.jpg" alt="code128问题的图片" title="Error"></p><h2 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h2><ol><li>直接删除Blog文件夹下的.deploy_git文件夹</li><li>在终端输入<code>git config --global core.autocrlf false</code></li><li>最后清理内存<code>hexo clean</code>，生成内容<code>hexo g</code>，上传<code>hexo d</code>即可</li></ol><h3 id="参考文章："><a href="#参考文章：" class="headerlink" title="参考文章："></a>参考文章：</h3><ul><li><a href="https://blog.nowcoder.net/n/f3bd101579a64547b4b46951ddce7ff6">hexo发生error：spawn failed错误的解决方法</a></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>踩坑记录</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>hexo</tag>
+      
+      <tag>markdown</tag>
+      
+      <tag>github</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Linux在Windows下的搭建的踩坑记录</title>
+    <link href="/2022/07/06/Linux/Linux%E5%9C%A8windows%E4%B8%8B%E7%9A%84%E6%90%AD%E5%BB%BA%E7%9A%84%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/"/>
+    <url>/2022/07/06/Linux/Linux%E5%9C%A8windows%E4%B8%8B%E7%9A%84%E6%90%AD%E5%BB%BA%E7%9A%84%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Linux-环境搭建之踩坑记录"><a href="#Linux-环境搭建之踩坑记录" class="headerlink" title="Linux 环境搭建之踩坑记录"></a>Linux 环境搭建之踩坑记录</h1><h2 id="1-vim文件修改后保存失败"><a href="#1-vim文件修改后保存失败" class="headerlink" title="1.vim文件修改后保存失败"></a>1.vim文件修改后保存失败</h2><p>使用vim修改文件后使用<code>:wq</code>保存时，发生错误</p><p><img src="/2022/07/06/Linux/Linux%E5%9C%A8windows%E4%B8%8B%E7%9A%84%E6%90%AD%E5%BB%BA%E7%9A%84%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/error1.jpg" alt="图片" title="vim保存错误"></p><p>解决方法：</p><p>1、使用<code>:q!</code>强制退出文件，推出前请将修改内容复制到其他地方暂存<br>2、在终端输入<code>su root</code>，回车后输入自己的用户密码，进入root模式<br>3、再次进入文件，修改后即可保存</p><h2 id="2-宿主机和虚拟机ping不通"><a href="#2-宿主机和虚拟机ping不通" class="headerlink" title="2.宿主机和虚拟机ping不通"></a>2.宿主机和虚拟机ping不通</h2><p>问题：<br>1、宿主机不能ping虚拟机<br>2、虚拟机不能ping宿主机</p><p>解决方法：</p><p>问题1：<br>1、改变vmnet8 ip<br>操作：</p><ol><li>虚拟机在root模式（输入<code>su root</code>和密码后进入）下输入<code>ifconfig</code>，得到inet netmask broadcast 三个地址</li></ol><p><img src="/2022/07/06/Linux/Linux%E5%9C%A8windows%E4%B8%8B%E7%9A%84%E6%90%AD%E5%BB%BA%E7%9A%84%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/%E8%99%9A%E6%8B%9F%E6%9C%BAip.jpg" alt="虚拟机IP图片" title="虚拟机ip等信息"></p><p>2、 打开控制面板→点击网络和Internet→点击网络和共享中心</p><p><img src="/2022/07/06/Linux/Linux%E5%9C%A8windows%E4%B8%8B%E7%9A%84%E6%90%AD%E5%BB%BA%E7%9A%84%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/%E7%BD%91%E7%BB%9C%E5%92%8C%E5%85%B1%E4%BA%AB%E4%B8%AD%E5%BF%83.jpg" alt="网络共享中心图片" title="网络和共享中心"></p><p>3、点击更改适配器设置，右键选中VMware Network Adapter VMnet8，点击属性，双击Internet 协议版本 4（TCP&#x2F;IPv4），修改IP地址、子网掩码、默认网关为 inet netmask broadcast 三个地址，修改完成后，宿主机可ping虚拟机</p><p><img src="/2022/07/06/Linux/Linux%E5%9C%A8windows%E4%B8%8B%E7%9A%84%E6%90%AD%E5%BB%BA%E7%9A%84%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/ip%E4%BF%AE%E6%94%B9.jpg" alt="ip修改图片"></p><p>问题2：<br>关闭宿主机防火墙，具体方法参考下方3链接</p><h3 id="参考文章："><a href="#参考文章：" class="headerlink" title="参考文章："></a>参考文章：</h3><ol><li><a href="https://blog.csdn.net/weixin_40853073/article/details/81707177">Linux：readonly option is set (add ! to override)错误</a></li><li><a href="https://www.cnblogs.com/cs-js/p/13586803.html">vmware 安装centos7,NAT模式下宿主机ping 不同虚拟机的解决方案</a></li><li><a href="https://blog.csdn.net/qq_42500577/article/details/95954948">windows下虚拟机ping不通主机的原因+我的解决办法</a></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>踩坑记录</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Linux</tag>
+      
+      <tag>环境搭建</tag>
+      
+      <tag>windows</tag>
+      
+      <tag>vim</tag>
+      
+      <tag>IP</tag>
+      
+      <tag>虚拟机</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  
+</search>
